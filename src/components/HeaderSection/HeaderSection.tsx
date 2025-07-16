@@ -1,9 +1,8 @@
-import React, { FC } from 'react';
+type HeaderSectionProps = {
+  
+}
 
-
-interface HeaderSectionProps {}
-
-const HeaderSection: FC<HeaderSectionProps> = () => (
+const HeaderSection = ({}:HeaderSectionProps) => (
   <div>
     HeaderSection Component
   </div>
