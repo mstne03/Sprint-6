@@ -1,49 +1,40 @@
+import Div from '../Div/Div'
 import GlassButton from '../GlassButton/GlassButton'
 
 type HeaderSectionProps = {
 
 }
 
-const HeaderSection = ({}:HeaderSectionProps) => (
-  <div className="
-          text-2xl 
-          font-bold 
-          sticky 
-          top-0 
-          w-screen 
-          flex 
-          justify-center 
-          items-center 
-          h-24 
-          z-10
-  ">
-    <div className="
-            mt-4
-            max-w-[700px]
-            p-4
-            cursor-pointer 
-            shadow-2xl 
-            inset-shadow-gray-950 
-            border-2 
-            text-green-200/70 
-            border-white/20 
-            rounded-md 
-            space-x-32
-            transition
-            duration-700 
-            ease-in-out 
-            bg-white/30  
-            backdrop-blur-sm 
-            hover:backdrop-blur-lg
-            hover:scale-105
+const HeaderSection = ({}:HeaderSectionProps) => {
+  const buttonsMap = [
+    {key: 1, text: "SEO"},
+    {key: 2, text: "ADS"},
+    {key: 3, text: "WEB"},
+  ]
+
+  return (
+    <header className="
+            text-2xl 
+            font-bold 
+            sticky 
+            top-0 
+            w-screen 
+            flex 
+            justify-center 
+            items-center 
+            h-24 
+            z-10
     ">
-      <GlassButton text="SEO"/>
-      
-      <GlassButton text="ADS"/>
-      
-      <GlassButton text="WEB"/>
-    </div>
-  </div>
-);
+      <Div>
+        {buttonsMap.map(object => 
+          <GlassButton 
+            key={object.key} 
+            text={object.text}
+          />
+        )}
+      </Div>
+    </header>
+  );
+};
 
 export default HeaderSection;
