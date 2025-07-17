@@ -4,10 +4,13 @@ type HomePageProps = {
 
 }
 
-const HomePage = ({}:HomePageProps) => (
-    <>
-        <HeaderSection/>
-    </>
-);
+const HomePage = ({}:HomePageProps) => {
+
+    return (
+        <div className="">
+            <HeaderSection/>
+        </div>
+    )
+}
 
 export default HomePage;
