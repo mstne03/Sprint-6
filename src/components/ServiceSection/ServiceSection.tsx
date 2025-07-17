@@ -1,4 +1,6 @@
 import Div from '../Div/Div'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 type ServiceSectionProps = {
 
@@ -51,12 +53,37 @@ const ServiceSection = ({}:ServiceSectionProps) => {
                   </p>
                   <span className="text-[15px]">€</span>
                 </div>
-                <input 
-                  type="checkbox" 
-                  name={`${object.service}`} 
-                  id={`${object.key}`}
-                  className="cursor-pointer"
-                />
+                <label htmlFor={`${object.service}`}
+                  className="relative"
+                >
+                  <input 
+                    type="checkbox" 
+                    name={`${object.service}`} 
+                    id={`${object.key}`}
+                    className="
+                      cursor-pointer
+                      appearance-none
+                      w-5 
+                      h-5
+                      border-2 
+                      border-gray-300
+                      rounded
+                      checked:border-green-500
+                      focus:outline-none
+                      transition 
+                      duration-200
+                      active:scale-90
+                  "/>
+                  <FontAwesomeIcon 
+                    icon={faCheck}
+                    className="
+                      active:scale-90
+                      absolute 
+                      right-[2.5px] 
+                      top-[1.5px]
+                      pointer-events-none
+                  "/>
+                </label>
               </div>
             </div>
           </Div>
