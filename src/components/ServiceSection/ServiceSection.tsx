@@ -1,37 +1,55 @@
 import Div from '../Div/Div'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import ServiceCheckbox from './ServiceCheckbox/ServiceCheckbox'
+import { useState } from 'react'
 
 type ServiceSectionProps = {
 
 }
 
 const ServiceSection = ({}:ServiceSectionProps) => {
-  const cardMap = [
+  const cardMap= [
     {
-      key: 1, 
+      key: 0, 
       service: "SEO",
       description: "Optimize your website's SEO for better positioning",
-      pricing: 300
+      pricing: 300,
     },
     {
-      key: 2, 
+      key: 1, 
       service: "ADS",
       description: "Use ads to get people to know you",
       pricing: 400
     },
     {
-      key: 3, 
+      key: 2, 
       service: "WEB",
       description: "Complete responsive web programming",
       pricing: 500
     }
-  ]
+  ];
+
+  const [checked, setChecked] = useState<{[key: number]: boolean }>({0:false, 1:false, 2:false});
 
   return (
-    <div className="flex justify-center items-center gap-1 md:gap-10 mt-30 sticky z-10">
+    <div className="
+          flex 
+          flex-col
+          md:flex-row
+          justify-center 
+          items-center 
+          gap-1
+          lg:gap-10
+          lg:mt-30
+          mt-10 
+          sticky 
+          z-5
+    ">
       {cardMap.map(object => (
-          <Div key={object.key} isHeader={false}>
+          <Div 
+            key={object.key} 
+            isHeader={false} 
+            isClickable={true}
+          >
             <div className="
                     min-h-[150px] 
                     flex 
@@ -39,7 +57,14 @@ const ServiceSection = ({}:ServiceSectionProps) => {
                     items-center
                     justify-between
                     gap-5
-            ">
+                  "
+                onClick={() => {
+                  setChecked(prev => ({
+                    ...prev,
+                    [object.key]: !prev[object.key]
+                  }));
+                }}
+            >
               <div className="space-y-3">
                 <h1 className="text-3xl font-bold">
                   {object.service}
@@ -53,37 +78,12 @@ const ServiceSection = ({}:ServiceSectionProps) => {
                   </p>
                   <span className="text-[15px]">€</span>
                 </div>
-                <label htmlFor={`${object.service}`}
-                  className="relative"
-                >
-                  <input 
-                    type="checkbox" 
-                    name={`${object.service}`} 
-                    id={`${object.key}`}
-                    className="
-                      cursor-pointer
-                      appearance-none
-                      w-5 
-                      h-5
-                      border-2 
-                      border-gray-300
-                      rounded
-                      checked:border-green-500
-                      focus:outline-none
-                      transition 
-                      duration-200
-                      active:scale-90
-                  "/>
-                  <FontAwesomeIcon 
-                    icon={faCheck}
-                    className="
-                      active:scale-90
-                      absolute 
-                      right-[2.5px] 
-                      top-[1.5px]
-                      pointer-events-none
-                  "/>
-                </label>
+                <ServiceCheckbox 
+                  key={object.key}
+                  service={object.service}
+                  id={object.key}
+                  checked={checked[object.key]}
+                />
               </div>
             </div>
           </Div>
