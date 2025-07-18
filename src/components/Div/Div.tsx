@@ -28,6 +28,7 @@ const Div = ({children, isHeader=true, isClickable=false}:DivProps) => (
             backdrop-blur-sm 
             hover:backdrop-blur-lg
             hover:scale-105
+            z-20
     `}>
         {children}
     </div>

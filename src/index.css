@@ -1,1 +1,25 @@
 @import 'tailwindcss';
+
+@theme {
+    --animate-radial-gradient: spin 25s ease-in-out infinite;
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg) scale(0.3);
+        }20% {
+            transform: rotate(360deg) scale(1.5);
+        }
+        40% {
+            transform: rotate(200deg) scale(0.7);
+        }
+        60% {
+            transform: rotate(500deg) scale(1.5);
+        }
+        80% {
+            transform: rotate(50deg) scale(2);
+        }
+        100% {
+            transform: rotate(3deg) scale(0.3);
+        }
+    }
+}

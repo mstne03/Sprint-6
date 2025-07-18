@@ -1,6 +1,7 @@
 import Div from '../Div/Div'
-import ServiceCheckbox from './ServiceCheckbox/ServiceCheckbox'
+import ServiceCheckbox from '../ServiceCheckbox/ServiceCheckbox'
 import { useState } from 'react'
+import BlobCircle from '../../components/BlobCircle/BlobCircle'
 
 type ServiceSectionProps = {
 
@@ -41,8 +42,8 @@ const ServiceSection = ({}:ServiceSectionProps) => {
           lg:gap-10
           lg:mt-30
           mt-10  
-          z-5
           pb-20
+          z-20
     ">
       {cardMap.map(object => (
           <Div 
@@ -89,6 +90,7 @@ const ServiceSection = ({}:ServiceSectionProps) => {
           </Div>
         )
       )}
+      
     </div>
   )
 };

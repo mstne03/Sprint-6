@@ -23,7 +23,7 @@ const HeaderSection = ({}:HeaderSectionProps) => {
             justify-center 
             items-center 
             h-24 
-            z-10
+            z-30
     ">
       <Div>
         {buttonsMap.map(object => 
