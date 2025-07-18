@@ -40,9 +40,9 @@ const ServiceSection = ({}:ServiceSectionProps) => {
           gap-1
           lg:gap-10
           lg:mt-30
-          mt-10 
-          sticky 
+          mt-10  
           z-5
+          pb-20
     ">
       {cardMap.map(object => (
           <Div 
