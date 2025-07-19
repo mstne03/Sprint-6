@@ -29,6 +29,7 @@ const ServiceSection = ({}:ServiceSectionProps) => {
   ];
 
   const [checked, setChecked] = useState<{[key: number]: boolean }>({0:false, 1:false, 2:false});
+  const [price, setPrice] = useState(0);
 
   return (
     <div className="
@@ -89,7 +90,13 @@ const ServiceSection = ({}:ServiceSectionProps) => {
           </Div>
         )
       )}
-      
+      <Div>
+        <h3 className="font-bold text-2xl">TOTAL PRICE</h3>
+        <div className="flex">
+          <p>{price}</p>
+          <span>€</span>
+        </div>
+      </Div>
     </div>
   )
 };
