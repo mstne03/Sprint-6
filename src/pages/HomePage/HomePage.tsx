@@ -15,6 +15,9 @@ const HomePage = ({}:HomePageProps) => {
             <ServiceSection/>
 
             <BlobCircle/>
+            <BlobCircle leftSide={true}/>
+            <BlobCircle rightSide={true}/>
+            <BlobCircle interactive={true}/>
         </div>
     )
 }

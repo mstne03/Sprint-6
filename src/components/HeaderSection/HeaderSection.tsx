@@ -1,37 +1,26 @@
 import Div from '../Div/Div'
-import GlassButton from '../GlassButton/GlassButton'
 
 type HeaderSectionProps = {
 
 }
 
 const HeaderSection = ({}:HeaderSectionProps) => {
-  const buttonsMap = [
-    {key: 1, text: "SEO"},
-    {key: 2, text: "ADS"},
-    {key: 3, text: "WEB"},
-  ]
 
   return (
     <header className="
             text-2xl 
             font-bold 
             sticky 
-            top-0 
+            top-35 
             w-screen 
             flex 
             justify-center 
             items-center 
             h-24 
-            z-30
+            z-20
     ">
       <Div>
-        {buttonsMap.map(object => 
-          <GlassButton 
-            key={object.key} 
-            text={object.text}
-          />
-        )}
+        <h1 className="font-bold text-5xl text-center px-20 py-10">CHOOSE SERVICES</h1>
       </Div>
     </header>
   );

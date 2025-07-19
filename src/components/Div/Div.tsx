@@ -24,8 +24,9 @@ const Div = ({children, isHeader=true, isClickable=false}:DivProps) => (
             transition
             duration-400 
             ease-in-out 
-            bg-white/30  
-            backdrop-blur-sm 
+            bg-white/10  
+            hover:bg-white/30
+            backdrop-blur-[600px] 
             hover:backdrop-blur-lg
             hover:scale-105
             z-20

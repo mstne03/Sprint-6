@@ -1,7 +1,6 @@
 import Div from '../Div/Div'
 import ServiceCheckbox from '../ServiceCheckbox/ServiceCheckbox'
 import { useState } from 'react'
-import BlobCircle from '../../components/BlobCircle/BlobCircle'
 
 type ServiceSectionProps = {
 
