@@ -8,7 +8,7 @@ const Div = ({children, isHeader=true, isClickable=false}:DivProps) => (
     <div className={`
             cursor-pointer 
             min-w-[250px]
-            ${isHeader ? "": "max-w-[100px]"}
+            ${isHeader ? "": "max-w-[100px] hover:scale-105"}
             ${isClickable ? "active:scale-90" : ""}
             transform-gpu
             will-change-transform
@@ -28,7 +28,6 @@ const Div = ({children, isHeader=true, isClickable=false}:DivProps) => (
             hover:bg-white/30
             backdrop-blur-[600px] 
             hover:backdrop-blur-lg
-            hover:scale-105
             z-20
     `}>
         {children}

@@ -103,7 +103,7 @@ const ServiceSection = ({}:ServiceSectionProps) => {
       </div>
       <div className="absolute top-[350px] z-15">
         <Div>
-          <div className="flex gap-5 items-baseline">
+          <div className="flex gap-5 items-baseline justify-center">
             <h3 className="font-bold text-2xl">TOTAL PRICE:</h3>
             <div className="flex items-baseline">
               <p className="text-2xl font-bold">{price}</p>
