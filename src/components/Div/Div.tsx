@@ -2,14 +2,15 @@ type DivProps = {
     children:React.ReactNode,
     isHeader?:boolean,
     isClickable?:boolean,
+    isInline?:boolean,
 }
 
-const Div = ({children, isHeader=true, isClickable=false}:DivProps) => (
+const Div = ({children, isHeader=true, isClickable=false, isInline=false}:DivProps) => (
     <div className={`
             cursor-pointer 
-            min-w-[250px]
             ${isHeader ? "": "max-w-[100px] hover:scale-105"}
             ${isClickable ? "active:scale-90" : ""}
+            ${isInline ? "inline-block text-center max-w-[80px]" : "min-w-[250px]"}
             transform-gpu
             will-change-transform
             mt-4

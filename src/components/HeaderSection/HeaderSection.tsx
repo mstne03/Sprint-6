@@ -11,7 +11,8 @@ const HeaderSection = ({}:HeaderSectionProps) => {
             text-2xl 
             font-bold 
             sticky 
-            top-35 
+            top-10
+            md:top-35
             w-screen 
             flex 
             justify-center 
@@ -20,7 +21,15 @@ const HeaderSection = ({}:HeaderSectionProps) => {
             z-20
     ">
       <Div>
-        <h1 className="font-bold text-5xl text-center px-20 py-10">CHOOSE SERVICES</h1>
+        <h1 className="
+              font-bold 
+              text-5xl 
+              text-center 
+              px-20 
+              py-10
+        ">
+          QUALITY SERVICES
+        </h1>
       </Div>
     </header>
   );

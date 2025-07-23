@@ -1,9 +1,17 @@
-import HomePage from './pages/HomePage/HomePage'
+import HeaderSection from './components/HeaderSection/HeaderSection'
+import ServiceSection from './components/ServiceSection/ServiceSection'
+import BlobCircle from './components/BlobCircle/BlobCircle'
 
 function App() {
   return (
-    <div className="min-w-screen min-h-screen bg-gradient-to-tl  bg-black">
-      <HomePage/>
+    <div className="relative">
+      <HeaderSection/>
+
+      <ServiceSection/>
+
+      <BlobCircle/>
+      <BlobCircle leftSide={true}/>
+      <BlobCircle rightSide={true}/>
     </div>
   )
 }
