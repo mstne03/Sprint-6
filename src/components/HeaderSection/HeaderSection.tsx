@@ -1,10 +1,6 @@
 import Div from '../Div/Div'
 
-type HeaderSectionProps = {
-
-}
-
-const HeaderSection = ({}:HeaderSectionProps) => {
+const HeaderSection = () => {
 
   return (
     <header className="

@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
 import cardArray from '../data/ServiceSectionData'
+import type { ServiceObject } from '../utils/Types'
 
 export default function useServiceSection () {
-    const [checked, setChecked] = useState<{[key: number]: boolean }>(
+    const [checked, setChecked] = useState<ServiceObject>(
         {
             0:false, 
             1:false, 
             2:false
-        });
+        } as ServiceObject);
     const [pagesAddon, setPagesAddon] = useState(0);
     const [languageAddon, setLanguageAddon] = useState(0);
     const [price, setPrice] = useState(0);

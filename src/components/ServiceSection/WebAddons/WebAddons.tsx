@@ -1,10 +1,6 @@
 import Div from '../../Div/Div'
-
-type WebAddonsProps = {
-  quantity:number,
-  setQuantity:(any:any) => void,
-  addon:string,
-}
+import type { WebAddonsProps } from '../../../utils/Types'
+import { DivVariants } from '../../../data/DivVariants'
 
 const WebAddons = ({quantity, setQuantity, addon}:WebAddonsProps) => (
   <div className="flex flex-col items-center mt-5">
@@ -13,8 +9,9 @@ const WebAddons = ({quantity, setQuantity, addon}:WebAddonsProps) => (
     </div>
     <div className="flex justify-evenly items-baseline">
       <Div
-        isClickable={true}
-        isInline={true}
+        isNotHeader={DivVariants.isNotHeader}
+        isClickable={DivVariants.isClickable}
+        isInline={DivVariants.isInline}
         fun={() => setQuantity((prev:number) => prev+1)}
       >
         <p>
@@ -25,8 +22,9 @@ const WebAddons = ({quantity, setQuantity, addon}:WebAddonsProps) => (
         {quantity}
       </p>
       <Div
-        isClickable={true}
-        isInline={true}
+        isNotHeader={DivVariants.isNotHeader}
+        isClickable={DivVariants.isClickable}
+        isInline={DivVariants.isInline}
         fun={() => setQuantity((prev:number) => {
           if (prev===0) return prev;
           

@@ -1,20 +1,21 @@
 import Div from '../Div/Div'
-import ServiceCheckbox from '../ServiceCheckbox/ServiceCheckbox'
 import WebAddons from './WebAddons/WebAddons'
-import useServiceSection from '../../hooks/ServiceSectionHooks'
+import useServiceSection from '../../hooks/useServiceSection'
 import cardArray from '../../data/ServiceSectionData'
+import { DivVariants } from '../../data/DivVariants'
+import ServiceCard from './ServiceCard/ServiceCard'
 
 const ServiceSection = () => {
 
   const {
-        checked,
-        setChecked,
-        pagesAddon,
-        setPagesAddon,
-        languageAddon,
-        setLanguageAddon,
-        price
-    } = useServiceSection();
+      checked,
+      setChecked,
+      pagesAddon,
+      setPagesAddon,
+      languageAddon,
+      setLanguageAddon,
+      price
+  } = useServiceSection();
 
   return (
     <div className="relative flex flex-col items-center justify-center">
@@ -33,48 +34,18 @@ const ServiceSection = () => {
       ">
         {cardArray.map(object => (
             <div className="flex flex-col min-h-[550px]">
-              <Div 
-                key={object.key} 
-                isHeader={false} 
-                isClickable={true}
-              >
-                <div className="
-                        min-h-[150px] 
-                        flex 
-                        flex-col 
-                        items-center
-                        justify-between
-                        gap-5
-                      "
-                    onClick={() => {
-                      setChecked(prev => ({
-                        ...prev,
-                        [object.key]: !prev[object.key]
-                      }));
-                    }}
-                >
-                  <div className="space-y-3">
-                    <h1 className="text-3xl font-bold">
-                      {object.service}
-                    </h1>
-                    <p>{object.description}</p>
-                  </div>
-                  <div className="flex gap-10 items-center">
-                    <div className="flex gap-0 items-baseline">
-                      <p className="font-bold text-2xl">
-                        {object.pricing}
-                      </p>
-                      <span className="text-[15px]">€</span>
-                    </div>
-                    <ServiceCheckbox 
-                      key={object.key}
-                      service={object.service}
-                      id={object.key}
-                      checked={checked[object.key]}
-                    />
-                  </div>
-                </div>
-              </Div>
+              <ServiceCard
+                key={object.key}
+                id={object.key}
+                onClickFun={setChecked}
+                isNotHeader={DivVariants.isNotHeader}
+                isClickable={DivVariants.isClickable}
+                isNotInline={DivVariants.isNotInline}
+                service={object.service}
+                description={object.description}
+                pricing={object.pricing}
+                isChecked={checked[object.key]}
+              />
               {
                 (checked[object.key] && object.addOns) &&
                 <div className="flex flex-col justify-center items-center">

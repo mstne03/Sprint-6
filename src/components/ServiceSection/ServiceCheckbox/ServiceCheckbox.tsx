@@ -1,11 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
-
-type ServiceCheckboxProps = {
-  service:string,
-  id:number,
-  checked:boolean,
-}
+import type { ServiceCheckboxProps } from '../../../utils/Types'
 
 const ServiceCheckbox = ({service,id,checked}:ServiceCheckboxProps) => {
   
