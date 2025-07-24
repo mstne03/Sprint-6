@@ -1,3 +1,5 @@
+type SetState<T> = React.Dispatch<React.SetStateAction<T>>
+
 type AddOns = {
     pages: {
         name:string,
@@ -17,9 +19,11 @@ type Service = {
     addOns?: AddOns,
 }
 
+type cardMap = Service[]
+
 type WebAddonsProps = {
     quantity:number,
-    setQuantity:(any:any) => void,
+    setQuantity:SetState<number>,
     addon:string,
 }
 
@@ -27,6 +31,7 @@ type ServiceCheckboxProps = {
     service:string,
     id:number,
     checked:boolean,
+    onChange:SetState<ServiceObject>,
 }
 
 type DivProps = {
@@ -35,7 +40,7 @@ type DivProps = {
     isClickable?:string,
     isInline?:string,
     isNotInline?:string,
-    fun?:(prev:number|any) => number|any,
+    fun?:() => void,
 }
 
 type ServiceObject = {
@@ -44,7 +49,7 @@ type ServiceObject = {
 
 type ServiceCardProps = {
   id:number,
-  onClickFun:React.Dispatch<React.SetStateAction<ServiceObject>>,
+  onClickFun:SetState<ServiceObject>,
   isNotHeader:string,
   isClickable:string,
   isNotInline:string,
@@ -54,5 +59,24 @@ type ServiceCardProps = {
   isChecked:boolean,
 }
 
-export type cardMap = Service[];
-export type { WebAddonsProps, ServiceCheckboxProps, DivProps, ServiceCardProps, ServiceObject };
+type FunctionReturn<T, U> = ({}:T) => U;
+
+type BlobCircleProps = {
+    [key: string]:boolean,
+}
+
+type BlobCircleReturn = {
+    [key: string]: string,
+}
+
+export type { 
+    cardMap,
+    WebAddonsProps, 
+    ServiceCheckboxProps, 
+    DivProps, 
+    ServiceCardProps, 
+    ServiceObject ,
+    FunctionReturn,
+    BlobCircleReturn,
+    BlobCircleProps,
+};

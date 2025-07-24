@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import type { ServiceCheckboxProps } from '../../../utils/Types'
 
-const ServiceCheckbox = ({service,id,checked}:ServiceCheckboxProps) => {
+const ServiceCheckbox = ({service,id,checked,onChange}:ServiceCheckboxProps) => {
   
   return (
     <label htmlFor={`${service}`}
@@ -13,6 +13,10 @@ const ServiceCheckbox = ({service,id,checked}:ServiceCheckboxProps) => {
         name={service} 
         id={`${id}`}
         checked={checked}
+        onChange={() => onChange(prev => ({
+            ...prev,
+            [id]: !prev[id]
+          }))}
         className="
           cursor-pointer
           appearance-none

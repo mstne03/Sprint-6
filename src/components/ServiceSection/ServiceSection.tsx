@@ -33,9 +33,8 @@ const ServiceSection = () => {
             z-20
       ">
         {cardArray.map(object => (
-            <div className="flex flex-col min-h-[550px]">
+            <div className="flex flex-col min-h-[550px]" key={object.key}>
               <ServiceCard
-                key={object.key}
                 id={object.key}
                 onClickFun={setChecked}
                 isNotHeader={DivVariants.isNotHeader}
@@ -50,13 +49,11 @@ const ServiceSection = () => {
                 (checked[object.key] && object.addOns) &&
                 <div className="flex flex-col justify-center items-center">
                   <WebAddons 
-                    key={object.key}
                     quantity={pagesAddon}
                     setQuantity={setPagesAddon}
                     addon={object.addOns!.pages.name}
                   />
                   <WebAddons
-                    key={object.key}
                     quantity={languageAddon}
                     setQuantity={setLanguageAddon}
                     addon={object.addOns!.languages.name}

@@ -12,7 +12,7 @@ const WebAddons = ({quantity, setQuantity, addon}:WebAddonsProps) => (
         isNotHeader={DivVariants.isNotHeader}
         isClickable={DivVariants.isClickable}
         isInline={DivVariants.isInline}
-        fun={() => setQuantity((prev:number) => prev+1)}
+        fun={() => setQuantity(prev => prev+1)}
       >
         <p>
           +
@@ -25,7 +25,7 @@ const WebAddons = ({quantity, setQuantity, addon}:WebAddonsProps) => (
         isNotHeader={DivVariants.isNotHeader}
         isClickable={DivVariants.isClickable}
         isInline={DivVariants.isInline}
-        fun={() => setQuantity((prev:number) => {
+        fun={() => setQuantity(prev => {
           if (prev===0) return prev;
           
           return prev-1;

@@ -6,7 +6,7 @@ const Div = ({
     isClickable="", 
     isInline="",
     isNotInline="", 
-    fun
+    fun=undefined,
 }:DivProps) => (
     <div 
         onClick={fun}

@@ -27,12 +27,6 @@ const ServiceCard = ({
             justify-between
             gap-5
           "
-        onClick={() => {
-          onClickFun(prev => ({
-            ...prev,
-            [id]: !prev[id]
-          }));
-        }}
     >
       <div className="space-y-3">
         <h1 className="text-3xl font-bold">
@@ -48,10 +42,10 @@ const ServiceCard = ({
           <span className="text-[15px]">€</span>
         </div>
         <ServiceCheckbox 
-          key={id}
           service={service}
           id={id}
           checked={isChecked}
+          onChange={onClickFun}
         />
       </div>
     </div>
