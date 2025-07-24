@@ -12,7 +12,7 @@ const HeaderSection = ({}:HeaderSectionProps) => {
             font-bold 
             sticky 
             top-10
-            md:top-35
+            md:top-10
             w-screen 
             flex 
             justify-center 

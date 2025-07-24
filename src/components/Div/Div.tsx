@@ -3,10 +3,14 @@ type DivProps = {
     isHeader?:boolean,
     isClickable?:boolean,
     isInline?:boolean,
+    fun?:(prev:number|any) => number|any,
 }
 
-const Div = ({children, isHeader=true, isClickable=false, isInline=false}:DivProps) => (
-    <div className={`
+const Div = ({children, isHeader=true, isClickable=false, isInline=false, fun}:DivProps) => (
+    <div 
+        onClick={fun}
+
+        className={`
             cursor-pointer 
             ${isHeader ? "": "max-w-[100px] hover:scale-105"}
             ${isClickable ? "active:scale-90" : ""}

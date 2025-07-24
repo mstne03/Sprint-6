@@ -1,74 +1,20 @@
 import Div from '../Div/Div'
 import ServiceCheckbox from '../ServiceCheckbox/ServiceCheckbox'
-import { useState, useEffect } from 'react'
+import WebAddons from './WebAddons/WebAddons'
+import useServiceSection from '../../hooks/ServiceSectionHooks'
+import cardArray from '../../data/ServiceSectionData'
 
-type ServiceSectionProps = {
+const ServiceSection = () => {
 
-}
-
-const ServiceSection = ({}:ServiceSectionProps) => {
-  const cardMap= [
-    {
-      key: 0, 
-      service: "SEO",
-      description: "Optimize your website's SEO for better positioning",
-      pricing: 300,
-      addOns: {
-        pages: {
-          name: "Pages",
-          price: 30,
-        },
-        languages: {
-          name: "Languages",
-          price: 30,
-        },
-      },
-    },
-    {
-      key: 1, 
-      service: "ADS",
-      description: "Use ads to get people to know you",
-      pricing: 400,
-      addOns: {
-        pages: {
-          name: "Pages",
-          price: 30,
-        },
-        languages: {
-          name: "Languages",
-          price: 30,
-        },
-      },
-    },
-    {
-      key: 2, 
-      service: "WEB",
-      description: "Complete responsive web programming",
-      pricing: 500,
-      addOns: {
-        pages: {
-          name: "Pages",
-          price: 30,
-        },
-        languages: {
-          name: "Languages",
-          price: 30,
-        },
-      },
-    }
-  ];
-
-  const [checked, setChecked] = useState<{[key: number]: boolean }>({0:false, 1:false, 2:false});
-  const [addOns, setAddOns] = useState<{[key: number]: number}>({0: 0, 1: 0, 2: 0});
-  const [price, setPrice] = useState(0);
-
-  useEffect(() => {
-    const newPrice = cardMap.reduce((acc, item) => {
-      return checked[item.key] ? acc + item.pricing : acc;
-    }, 0);
-
-    setPrice(newPrice);
-  }, [checked])
+  const {
+        checked,
+        setChecked,
+        pagesAddon,
+        setPagesAddon,
+        languageAddon,
+        setLanguageAddon,
+        price
+    } = useServiceSection();
 
   return (
     <div className="relative flex flex-col items-center justify-center">
@@ -85,7 +31,7 @@ const ServiceSection = ({}:ServiceSectionProps) => {
             pb-20
             z-20
       ">
-        {cardMap.map(object => (
+        {cardArray.map(object => (
             <div className="flex flex-col min-h-[550px]">
               <Div 
                 key={object.key} 
@@ -130,64 +76,20 @@ const ServiceSection = ({}:ServiceSectionProps) => {
                 </div>
               </Div>
               {
-                (checked[object.key] && object.service === "WEB") &&
+                (checked[object.key] && object.addOns) &&
                 <div className="flex flex-col justify-center items-center">
-                  <div className="flex flex-col items-center mt-5">
-                    <div className="text-green-200/70 font-bold text-2xl">
-                      <p>Pages</p>
-                    </div>
-                    <div className="flex justify-evenly items-baseline">
-                      <Div
-                        key={object.key}
-                        isClickable={true}
-                        isInline={true}
-                      >
-                        <p>
-                          +
-                        </p>
-                      </Div>
-                      <p className="text-green-200/70 font-bold text-2xl px-5">
-                        {1}
-                      </p>
-                      <Div
-                        key={object.key}
-                        isClickable={true}
-                        isInline={true}
-                      >
-                        <p>
-                          -
-                        </p>
-                      </Div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <div className="text-green-200/70 font-bold text-2xl mt-5">
-                      <p>Languages</p>
-                    </div>
-                    <div className="flex justify-evenly items-baseline">
-                      <Div
-                        key={object.key}
-                        isClickable={true}
-                        isInline={true}
-                      >
-                        <p>
-                          +
-                        </p>
-                      </Div>
-                      <p className="text-green-200/70 font-bold text-2xl px-5">
-                        {1}
-                      </p>
-                      <Div
-                        key={object.key}
-                        isClickable={true}
-                        isInline={true}
-                      >
-                        <p>
-                          -
-                        </p>
-                      </Div>
-                    </div>
-                  </div>
+                  <WebAddons 
+                    key={object.key}
+                    quantity={pagesAddon}
+                    setQuantity={setPagesAddon}
+                    addon={object.addOns!.pages.name}
+                  />
+                  <WebAddons
+                    key={object.key}
+                    quantity={languageAddon}
+                    setQuantity={setLanguageAddon}
+                    addon={object.addOns!.languages.name}
+                  />
                 </div>
               }
             </div>
