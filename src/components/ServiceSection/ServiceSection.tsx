@@ -20,25 +20,22 @@ const ServiceSection = () => {
   return (
     <div className="relative flex flex-col items-center justify-center">
       <div className="
-            flex 
-            flex-wrap
-            md:flex-row
-            justify-center 
-            items-center 
-            gap-2
-            lg:gap-10
-            lg:mt-30
-            mt-10  
+            flex
+            flex-col
+            justify-center
+            items-center
+            gap-5
+            mt-10
             pb-20
             z-20
       ">
         {cardArray.map(object => (
-            <div className="flex flex-col min-h-[550px]" key={object.key}>
+            <div className="flex flex-col" key={object.key}>
               <ServiceCard
                 id={object.key}
                 onClickFun={setChecked}
                 isNotHeader={DivVariants.isNotHeader}
-                isClickable={DivVariants.isClickable}
+                isClickable={""}
                 isNotInline={DivVariants.isNotInline}
                 service={object.service}
                 description={object.description}

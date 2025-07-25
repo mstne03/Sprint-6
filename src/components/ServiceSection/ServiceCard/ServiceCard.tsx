@@ -20,12 +20,11 @@ const ServiceCard = ({
     isNotInline={isNotInline}
   >
     <div className="
-            min-h-[150px] 
-            flex 
-            flex-col 
+            min-h-[150px]
+            flex  
             items-center
             justify-between
-            gap-5
+            gap-20
           "
     >
       <div className="space-y-3">
