@@ -1,4 +1,4 @@
-import type { FunctionReturn, BlobCircleProps, BlobCircleReturn } from '../utils/Types' 
+import type { FunctionReturn, BlobCircleProps, BlobCircleReturn } from './Types' 
 
 const BlobCircleFunction:FunctionReturn<BlobCircleProps, BlobCircleReturn> = ({rightSide, leftSide}:BlobCircleProps) => (
     {

@@ -1,33 +1,35 @@
 import Div from '../Div/Div'
-
-const HeaderSection = () => {
+import DivVariants from '../../data/DivVariants'
+import type { HeaderSectionProps } from '../../utils/Types'
+ 
+const HeaderSection = ({changePage}:HeaderSectionProps) => {
 
   return (
-    <header className="
-            text-2xl 
-            font-bold 
-            sticky 
-            top-10
-            md:top-10
-            w-screen 
+    <div 
+        className=" 
+            mt-[200px]
             flex 
+            flex-col
             justify-center 
             items-center 
-            h-24 
+            gap-10
             z-20
-    ">
+        "
+    >
       <Div>
         <h1 className="
               font-bold 
-              text-5xl 
-              text-center 
+              text-4xl 
+              text-wrap 
+              text-center
+              max-w-[600px]
               px-20 
-              py-10
+              py-3
         ">
-          QUALITY SERVICES
+          TOP WEB-DEVELOPMENT SERVICES
         </h1>
       </Div>
-    </header>
+    </div>
   );
 };
 

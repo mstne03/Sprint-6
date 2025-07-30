@@ -1,5 +1,5 @@
 import type { BlobCircleProps } from '../../utils/Types'
-import BlobCircleFunction from '../../data/BlobValues'
+import BlobCircleFunction from '../../utils/BlobValues'
 
 const BlobCircle = ({rightSide=false, leftSide=false}:BlobCircleProps) => {
   
@@ -11,7 +11,7 @@ const BlobCircle = ({rightSide=false, leftSide=false}:BlobCircleProps) => {
           ${Values.positioning} 
           ${Values.width}
           ${Values.animation}
-          z-10 
+          -z-10 
           rounded-full 
           inset-0 
           m-auto 

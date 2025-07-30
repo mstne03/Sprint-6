@@ -47,12 +47,19 @@ type ServiceObject = {
     [key: number]: boolean
 }
 
+type HasAddons = {
+  objectNamePage: string;
+  objectNameLanguage: string;
+  statePages: number;
+  stateLanguages: number;
+  setStatePage: SetState<number>;
+  setStateLanguage: SetState<number>;
+}
+
 type ServiceCardProps = {
   id:number,
   onClickFun:SetState<ServiceObject>,
-  isNotHeader:string,
-  isClickable:string,
-  isNotInline:string,
+  isNotHeader:string,isNotInline:string,
   service:string,
   description:string,
   pricing:number,
@@ -69,14 +76,25 @@ type BlobCircleReturn = {
     [key: string]: string,
 }
 
+type HomeProps = {
+    changePage:SetState<number>,
+}
+
+type HeaderSectionProps = {
+    changePage:SetState<number>,
+}
+
 export type { 
     cardMap,
     WebAddonsProps, 
     ServiceCheckboxProps, 
     DivProps, 
     ServiceCardProps, 
-    ServiceObject ,
+    ServiceObject,
+    SetState,
     FunctionReturn,
     BlobCircleReturn,
     BlobCircleProps,
+    HomeProps,
+    HeaderSectionProps,
 };

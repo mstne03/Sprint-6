@@ -12,7 +12,6 @@ const Div = ({
         onClick={fun}
 
         className={`
-            cursor-pointer 
             ${isNotHeader}
             ${isClickable}
             ${isInline}
@@ -36,7 +35,8 @@ const Div = ({
             backdrop-blur-[600px] 
             hover:backdrop-blur-lg
             z-20
-    `}>
+        `}
+    >
         {children}
     </div>
 );
