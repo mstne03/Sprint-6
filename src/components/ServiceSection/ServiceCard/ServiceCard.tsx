@@ -2,8 +2,6 @@ import Div from '../../Div/Div'
 import ServiceCheckbox from '../ServiceCheckbox/ServiceCheckbox'
 import type { ServiceCardProps } from '../../../utils/Types'
 
-
-
 const ServiceCard = ({
   id,
   onClickFun,
