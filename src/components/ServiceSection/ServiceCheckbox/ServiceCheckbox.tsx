@@ -5,9 +5,7 @@ import type { ServiceCheckboxProps } from '../../../utils/Types'
 const ServiceCheckbox = ({service,id,checked,onChange}:ServiceCheckboxProps) => {
   
   return (
-    <label htmlFor={`${service}`}
-      className="relative flex items-center"
-    >
+    <div className="relative flex items-center">
       <input 
         type="checkbox" 
         name={service} 
@@ -43,7 +41,7 @@ const ServiceCheckbox = ({service,id,checked,onChange}:ServiceCheckboxProps) => 
           duration-700
           ease-in-out
       `}/>
-    </label>
+    </div>
   );
 };
 

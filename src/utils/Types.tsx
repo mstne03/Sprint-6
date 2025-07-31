@@ -47,15 +47,6 @@ type ServiceObject = {
     [key: number]: boolean
 }
 
-type HasAddons = {
-  objectNamePage: string;
-  objectNameLanguage: string;
-  statePages: number;
-  stateLanguages: number;
-  setStatePage: SetState<number>;
-  setStateLanguage: SetState<number>;
-}
-
 type ServiceCardProps = {
   id:number,
   onClickFun:SetState<ServiceObject>,
@@ -84,6 +75,18 @@ type HeaderSectionProps = {
     changePage:SetState<number>,
 }
 
+type SaveSearchServiceProps = {
+
+}
+
+type Application = {
+    client:string,
+    phone:number,
+    eMail:string,
+}
+
+type SavedServices = Application[]
+
 export type { 
     cardMap,
     WebAddonsProps, 
@@ -97,4 +100,7 @@ export type {
     BlobCircleProps,
     HomeProps,
     HeaderSectionProps,
+    SaveSearchServiceProps,
+    SavedServices,
+    Application,
 };
