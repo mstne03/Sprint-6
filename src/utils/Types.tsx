@@ -22,8 +22,7 @@ type Service = {
 type cardMap = Service[]
 
 type WebAddonsProps = {
-    quantity:number,
-    setQuantity:SetState<number>,
+    price:number,
     addon:string,
 }
 
@@ -45,6 +44,16 @@ type DivProps = {
 
 type ServiceObject = {
     [key: number]: boolean
+}
+
+type UseService = {
+    checked:ServiceObject,
+    setChecked:SetState<ServiceObject>,
+    pagesAddon:number,
+    setPagesAddon:SetState<number>,
+    languageAddon:number,
+    setLanguageAddon:SetState<number>,
+    price:number,
 }
 
 type ServiceCardProps = {
@@ -103,4 +112,5 @@ export type {
     SaveSearchServiceProps,
     SavedServices,
     Application,
+    UseService,
 };

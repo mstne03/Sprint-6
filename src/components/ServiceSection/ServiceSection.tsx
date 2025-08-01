@@ -1,5 +1,5 @@
 import Div from '../Div/Div'
-import useServiceSection from '../../hooks/useServiceSection'
+import useCurrentService from '../../hooks/useCurrentService'
 import cardArray from '../../data/ServiceSectionData'
 import DivVariants from '../../data/DivVariants'
 import ServiceCard from './ServiceCard/ServiceCard'
@@ -11,12 +11,8 @@ const ServiceSection = () => {
   const {
       checked,
       setChecked,
-      pagesAddon,
-      setPagesAddon,
-      languageAddon,
-      setLanguageAddon,
       price
-  } = useServiceSection();
+  } = useCurrentService();
 
   return (
     <div className="relative flex flex-col items-center justify-center">
@@ -46,16 +42,13 @@ const ServiceSection = () => {
                 {
                   (object.addOns != undefined && checked[object.key]) &&
                   <motion.div  className="flex flex-col justify-center items-center absolute -right-40">
-                    <WebAddons 
-                      quantity={pagesAddon}
-                      setQuantity={setPagesAddon}
-                      addon={object.addOns!.pages.name}
-                    />
-                    <WebAddons
-                      quantity={languageAddon}
-                      setQuantity={setLanguageAddon}
-                      addon={object.addOns!.languages.name}
-                    />
+                    {Object.entries(object.addOns).map(([key, value]) => (
+                      <WebAddons
+                        key={key}
+                        addon={value.name}
+                        price={value.price}
+                      />
+                    )) }
                   </motion.div>
                 }
               </AnimatePresence>
