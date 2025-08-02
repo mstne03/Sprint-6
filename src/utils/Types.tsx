@@ -58,12 +58,10 @@ type UseService = {
 
 type ServiceCardProps = {
   id:number,
-  onClickFun:SetState<ServiceObject>,
   isNotHeader:string,isNotInline:string,
   service:string,
   description:string,
   pricing:number,
-  isChecked:boolean,
 }
 
 type FunctionReturn<T, U> = ({}:T) => U;
@@ -92,6 +90,8 @@ type Application = {
     client:string,
     phone:number,
     eMail:string,
+    price:number,
+    services:Service[] | any[],
 }
 
 type SavedServices = Application[]

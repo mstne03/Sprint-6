@@ -10,7 +10,6 @@ const ServiceSection = () => {
 
   const {
       checked,
-      setChecked,
       price
   } = useCurrentService();
 
@@ -29,13 +28,11 @@ const ServiceSection = () => {
             <div className="flex min-h-[100px] items-center relative" key={object.key}>
               <ServiceCard
                 id={object.key}
-                onClickFun={setChecked}
                 isNotHeader={DivVariants.isNotHeader}
                 isNotInline={DivVariants.isNotInline}
                 service={object.service}
                 description={object.description}
                 pricing={object.pricing}
-                isChecked={checked[object.key]}
               />
 
               <AnimatePresence>
