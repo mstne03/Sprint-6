@@ -4,10 +4,12 @@ type AddOns = {
     pages: {
         name:string,
         price:number,
+        quantity:number,
     },
     languages: {
         name:string,
         price:number,
+        quantity:number,
     },
 }
 

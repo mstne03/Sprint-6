@@ -1,19 +1,24 @@
+import { useState } from 'react'
 import Div from '../Div/Div'
 import PendingServices from './PendingServices/PendingServices'
 import useCurrentService from '../../hooks/useCurrentService'
-import type { SaveSearchServiceProps, Application } from '../../utils/Types'
+import type { SaveSearchServiceProps, Application, SavedServices } from '../../utils/Types'
 import CardArray from '../../data/ServiceSectionData'
 import ServiceMap from '../../data/SavedServices'
 
 const SaveSearchService= ({}:SaveSearchServiceProps) => {
 
+  const [services, setServices] = useState<SavedServices>([])
+
   const {
+    languageAddon,
+    pagesAddon,
     checked,
     price
   } = useCurrentService();
 
   const createApplication = (application: FormData) => {
-    const Application:Application = {
+    const newApplication:Application = {
       client: application.get("name")! as string,
       phone: parseInt(application.get("phone")! as string),
       eMail: application.get("e-mail")! as string,
@@ -23,13 +28,32 @@ const SaveSearchService= ({}:SaveSearchServiceProps) => {
 
     Object.entries(checked).map(([key, isChecked], i) => {
       if (isChecked) {
-        Application.services.push(CardArray[i])
+
+        const selectedService = CardArray[i];
+
+        if (selectedService.addOns) {
+          newApplication.services.push({...selectedService, 
+            addOns: {
+              pages: {
+                ...selectedService.addOns.pages,
+                quantity:pagesAddon,
+              },
+              languages: {
+                ...selectedService.addOns.languages,
+                quantity:languageAddon,
+              }
+            }
+          })
+        } else {
+          newApplication.services.push({...selectedService})
+        }
+        
       }
     })
   
-    ServiceMap.push(Application);
+    ServiceMap.push(newApplication);
 
-    console.log(ServiceMap)
+    setServices(prev => [...prev, newApplication])
   }
 
   const searchApplication = (data: FormData) => {
@@ -53,7 +77,9 @@ const SaveSearchService= ({}:SaveSearchServiceProps) => {
   return (
     <Div>
       <div className="flex gap-10">
-        <PendingServices/>
+        <PendingServices
+          services={services}
+        />
         <div className="flex flex-col gap-10">
           <div>
             <form action={createApplication} id="applicationForm">

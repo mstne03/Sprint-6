@@ -22,10 +22,12 @@ const cardArray:cardMap= [
         pages: {
           name: "Pages",
           price: 30,
+          quantity:0,
         },
         languages: {
           name: "Languages",
           price: 30,
+          quantity: 0,
         },
       },
     }
