@@ -1,9 +1,4 @@
-import type { SavedServices } from '../../../utils/Types'
-import useCurrentService from '../../../hooks/useCurrentService'
-
-type PendingServicesProps = {
-    services:SavedServices
-}
+import type { PendingServicesProps } from '../../../utils/Types'
 
 const PendingServices = ({services}:PendingServicesProps) => {
 

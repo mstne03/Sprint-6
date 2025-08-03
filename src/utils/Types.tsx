@@ -66,6 +66,10 @@ type ServiceCardProps = {
   pricing:number,
 }
 
+type PendingServicesProps = {
+    services:SavedServices
+}
+
 type FunctionReturn<T, U> = ({}:T) => U;
 
 type BlobCircleProps = {
@@ -115,4 +119,5 @@ export type {
     SavedServices,
     Application,
     UseService,
+    PendingServicesProps,
 };
