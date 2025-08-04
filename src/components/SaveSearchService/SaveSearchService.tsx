@@ -1,16 +1,21 @@
-import { useState } from 'react'
+import useSearchService from '../../hooks/useSearchService'
+import useCurrentService from '../../hooks/useCurrentService'
 import Div from '../Div/Div'
 import PendingServices from './PendingServices/PendingServices'
-import useCurrentService from '../../hooks/useCurrentService'
 import type { SaveSearchServiceProps, Application, SavedServices } from '../../utils/Types'
 import CardArray from '../../data/ServiceSectionData'
 import ServiceMap from '../../data/SavedServices'
 
 const SaveSearchService= ({}:SaveSearchServiceProps) => {
 
-  const [services, setServices] = useState<SavedServices>([])
-  const [filteredServices, setFilteredServices] = useState<SavedServices>([])
-  const [isFiltering, setIsFiltering] = useState(false);
+  const {
+    services,
+    setServices,
+    filteredServices,
+    setFilteredServices,
+    isFiltering,
+    setIsFiltering,
+  } = useSearchService()
 
   const {
     languageAddon,
