@@ -9,6 +9,8 @@ import ServiceMap from '../../data/SavedServices'
 const SaveSearchService= ({}:SaveSearchServiceProps) => {
 
   const [services, setServices] = useState<SavedServices>([])
+  const [filteredServices, setFilteredServices] = useState<SavedServices>([])
+  const [isFiltering, setIsFiltering] = useState(false);
 
   const {
     languageAddon,
@@ -54,31 +56,50 @@ const SaveSearchService= ({}:SaveSearchServiceProps) => {
     ServiceMap.push(newApplication);
 
     setServices(prev => [...prev, newApplication])
+    setFilteredServices(prev => [...prev, newApplication])
+    setIsFiltering(false);
   }
 
-  const searchApplication = (data: FormData) => {
-    const name = data.get("name")! as string;
-    const phone = parseInt(data.get("phone")! as string);
-    const eMail = data.get("e-mail")! as string;
+  const searchApplicationByQuery = (data: FormData) => {
+    const query = data.get("search")! as string;
     
-    const applications = ServiceMap.filter(application => {
-        if (!(application.client === name ||
-              application.phone === phone ||
-              application.eMail === eMail)) 
-          return alert("No applications with this parameters")
-        
-        return application;
-      }
-    )
+    if (!query.trim()) {
+      setIsFiltering(false);
+      return;
+    }
 
-    
+    const filteredServices = services.filter(application => (
+            application.client.toLowerCase().includes(query.toLowerCase()) ||
+            application.phone.toString().toLowerCase().includes(query.toLowerCase()) ||
+            application.eMail.toLowerCase().includes(query.toLowerCase())
+    ))
+
+    if (filteredServices.length === 0) {
+      setIsFiltering(false);
+      return alert("No applications with this parameters");
+    }
+
+    setFilteredServices(filteredServices);
+    setIsFiltering(true);
+  }
+
+  const orderAlphabetically = (services:SavedServices):SavedServices => {
+    return [...services].sort((a,b) => 
+      a.client.localeCompare(
+        b.client, 'es', {sensitivity: 'base'}
+      )
+    )
   }
 
   return (
     <Div>
       <div className="flex gap-10">
         <PendingServices
-          services={services}
+          services={
+            isFiltering ?
+              filteredServices
+              : services
+          }
         />
         <div className="flex flex-col gap-10">
           <div>
@@ -126,10 +147,41 @@ const SaveSearchService= ({}:SaveSearchServiceProps) => {
           </div>
 
           <div>
-            <form className="flex flex-col" action={searchApplication} id="searchForm">
+            <form className="flex flex-col" action={searchApplicationByQuery} id="searchForm">
               <label htmlFor="searchForm">
                 Search for an application
               </label>
+              <div className="flex gap-5 mt-5">
+                <button
+                  className="
+                    text-[15px] 
+                    hover:scale-110 
+                    transition 
+                    duration-300 
+                    ease-in-out 
+                    will-change-transform 
+                    cursor-pointer
+                  "
+                  onClick={() => setIsFiltering(false)}
+                >
+                  Reset filters
+                </button>
+                
+                <button
+                  className="
+                    text-[15px] 
+                    hover:scale-110 
+                    transition 
+                    duration-300 
+                    ease-in-out 
+                    will-change-transform 
+                    cursor-pointer
+                  "
+                  onClick={() => setServices(orderAlphabetically(services))}
+                >
+                  A-Z
+                </button>
+              </div>
               <div className="flex flex-col gap-5 mt-5">
                 <input className="py-2" type="text" name="search" placeholder="search" />
                 <button className="

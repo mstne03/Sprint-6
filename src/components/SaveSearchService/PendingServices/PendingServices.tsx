@@ -3,7 +3,7 @@ import type { PendingServicesProps } from '../../../utils/Types'
 const PendingServices = ({services}:PendingServicesProps) => {
 
     return (
-        <div className="flex flex-col gap-5 max-h-[630px] overflow-y-auto">
+        <div className="flex flex-col gap-5 max-h-[600px] overflow-y-auto">
             {services.length !== 0 &&
             services.map((service, i) => {
                 return (
