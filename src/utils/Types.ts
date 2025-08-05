@@ -120,4 +120,5 @@ export type {
     Application,
     UseService,
     PendingServicesProps,
+    Service,
 };

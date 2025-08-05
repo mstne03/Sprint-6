@@ -1,10 +1,9 @@
 import useSearchService from '../../hooks/useSearchService'
 import useCurrentService from '../../hooks/useCurrentService'
+import { createApplication, searchApplicationByQuery, orderAlphabetically } from '../../utils/ApplicationUtils'
 import Div from '../Div/Div'
 import PendingServices from './PendingServices/PendingServices'
 import type { SaveSearchServiceProps, Application, SavedServices } from '../../utils/Types'
-import CardArray from '../../data/ServiceSectionData'
-import ServiceMap from '../../data/SavedServices'
 
 const SaveSearchService= ({}:SaveSearchServiceProps) => {
 
@@ -15,7 +14,7 @@ const SaveSearchService= ({}:SaveSearchServiceProps) => {
     setFilteredServices,
     isFiltering,
     setIsFiltering,
-  } = useSearchService()
+  } = useSearchService();
 
   const {
     languageAddon,
@@ -23,78 +22,6 @@ const SaveSearchService= ({}:SaveSearchServiceProps) => {
     checked,
     price
   } = useCurrentService();
-
-  const createApplication = (application: FormData) => {
-    const newApplication:Application = {
-      client: application.get("name")! as string,
-      phone: parseInt(application.get("phone")! as string),
-      eMail: application.get("e-mail")! as string,
-      price: price,
-      services: [],
-    }
-
-    Object.entries(checked).map(([key, isChecked], i) => {
-      if (isChecked) {
-
-        const selectedService = CardArray[i];
-
-        if (selectedService.addOns) {
-          newApplication.services.push({...selectedService, 
-            addOns: {
-              pages: {
-                ...selectedService.addOns.pages,
-                quantity:pagesAddon,
-              },
-              languages: {
-                ...selectedService.addOns.languages,
-                quantity:languageAddon,
-              }
-            }
-          })
-        } else {
-          newApplication.services.push({...selectedService})
-        }
-        
-      }
-    })
-  
-    ServiceMap.push(newApplication);
-
-    setServices(prev => [...prev, newApplication])
-    setFilteredServices(prev => [...prev, newApplication])
-    setIsFiltering(false);
-  }
-
-  const searchApplicationByQuery = (data: FormData) => {
-    const query = data.get("search")! as string;
-    
-    if (!query.trim()) {
-      setIsFiltering(false);
-      return;
-    }
-
-    const filteredServices = services.filter(application => (
-            application.client.toLowerCase().includes(query.toLowerCase()) ||
-            application.phone.toString().toLowerCase().includes(query.toLowerCase()) ||
-            application.eMail.toLowerCase().includes(query.toLowerCase())
-    ))
-
-    if (filteredServices.length === 0) {
-      setIsFiltering(false);
-      return alert("No applications with this parameters");
-    }
-
-    setFilteredServices(filteredServices);
-    setIsFiltering(true);
-  }
-
-  const orderAlphabetically = (services:SavedServices):SavedServices => {
-    return [...services].sort((a,b) => 
-      a.client.localeCompare(
-        b.client, 'es', {sensitivity: 'base'}
-      )
-    )
-  }
 
   return (
     <Div>
@@ -108,7 +35,19 @@ const SaveSearchService= ({}:SaveSearchServiceProps) => {
         />
         <div className="flex flex-col gap-10">
           <div>
-            <form action={createApplication} id="applicationForm">
+            <form action={(formData: FormData) => 
+              createApplication(
+                formData,
+                price,
+                checked,
+                pagesAddon,
+                languageAddon,
+                setServices,
+                setFilteredServices,
+                setIsFiltering
+              )} 
+              id="applicationForm"
+            >
               <label htmlFor="applicationForm">Apply for a budget</label>
               <div className="mt-5 flex flex-col">
                 <div className="flex flex-col gap-5 mb-5">
@@ -152,7 +91,16 @@ const SaveSearchService= ({}:SaveSearchServiceProps) => {
           </div>
 
           <div>
-            <form className="flex flex-col" action={searchApplicationByQuery} id="searchForm">
+            <form className="flex flex-col" action={(formData:FormData) => 
+                searchApplicationByQuery(
+                  formData,
+                  setIsFiltering,
+                  services,
+                  setFilteredServices
+                )
+              } 
+              id="searchForm"
+            >
               <label htmlFor="searchForm">
                 Search for an application
               </label>
@@ -207,10 +155,6 @@ const SaveSearchService= ({}:SaveSearchServiceProps) => {
                 </button>
               </div>
             </form>
-          </div>
-
-          <div>
-            
           </div>
         </div>
       </div>
