@@ -1,1 +1,42 @@
 @import 'tailwindcss';
+
+@theme {
+    --animate-radial-gradient: spin 25s ease-in-out infinite;
+    --animate-radial-gradient-alt: spin2 20s ease-in-out infinite;
+    --animate-radial-gradient-alt-2: spin3 10s ease infinite;
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg) scale(0.3);
+        }50% {
+            transform: rotate(360deg) scale(1.5);
+        }
+        100% {
+            transform: rotate(0deg) scale(0.3);
+        }
+    }
+
+    @keyframes spin2 {
+        0% {
+            transform: rotate(0deg) scale(1.5) translateX(-60%) translateY(-40%);
+        }
+        50% {
+            transform: rotate(0deg) scale(2) translateX(50%) translateY(20%);
+        }
+        100% {
+            transform: rotate(0deg) scale(1.5) translateX(-60%) translateY(-40%);
+        }
+    }
+
+    @keyframes spin3 {
+        0% {
+            transform: rotate(0deg) scale(1.7) translateX(-60%) translateY(-40%);
+        }
+        50% {
+            transform: rotate(0deg) scale(2) translateX(50%) translateY(20%);
+        }
+        100% {
+            transform: rotate(0deg) scale(1.7) translateX(-60%) translateY(-40%);
+        }
+    }
+}

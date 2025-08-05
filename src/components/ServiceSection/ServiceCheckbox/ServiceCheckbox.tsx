@@ -1,0 +1,48 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import type { ServiceCheckboxProps } from '../../../utils/Types'
+
+const ServiceCheckbox = ({service,id,checked,onChange}:ServiceCheckboxProps) => {
+  
+  return (
+    <div className="relative flex items-center">
+      <input 
+        type="checkbox" 
+        name={service} 
+        id={`${id}`}
+        checked={checked}
+        onChange={() => onChange(prev => ({
+            ...prev,
+            [id]: !prev[id]
+          }))}
+        className="
+          cursor-pointer
+          appearance-none
+          w-5 
+          h-5
+          border-2 
+          border-gray-300
+          rounded
+          checked:border-green-500
+          focus:outline-none
+          transition 
+          duration-200
+          active:scale-90
+      "/>
+      <FontAwesomeIcon 
+        icon={faCheck}
+        className={`
+        ${checked ?  "text-green-500" : "opacity-0"}
+          absolute 
+          right-[2.5px] 
+          top-[1.5px]
+          pointer-events-none
+          transition
+          duration-700
+          ease-in-out
+      `}/>
+    </div>
+  );
+};
+
+export default ServiceCheckbox;
